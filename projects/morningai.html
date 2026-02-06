@@ -298,6 +298,32 @@
       line-height: 1.4;
     }
 
+    /* Before/After grid labels */
+    .grid-label {
+      font-family: 'Fraunces', serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      color: var(--text-muted);
+    }
+
+    .grid-label.before-label {
+      color: var(--charcoal);
+    }
+
+    .grid-label.after-label {
+      color: var(--charcoal);
+    }
+
+    .visual-item .caption-muted {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
     /* Image overlay modal */
     .image-overlay {
       display: none;
@@ -432,6 +458,34 @@
         <p>MorningAI is an autonomous growth platform that helps small marketing teams compete with larger brands by using AI to generate campaigns, social posts, emails, and more.</p>
         <p>The problem: The existing content creation flow required users to navigate through 9 nested category tabs (Image & Video, Social Media, Ads, Sales Enablers, Blog, Email, Public Relations, Strategy, Blank) before they could create anything. Users faced decision paralysis at the first screen, abandoning briefs before generating content.</p>
         <p>The core question: <em>How might we transform a complex, wizard-based creation flow into an intuitive experience that gets marketers from idea to published content faster?</em></p>
+
+        <p class="grid-label before-label">Before: The Original Experience</p>
+        <div class="visual-grid">
+          <figure class="visual-item">
+            <div class="img-wrapper" role="button" tabindex="0" data-src="old.dashboard.png" data-alt="Category-first navigation with 9 tabs required upfront decisions">
+              <img src="old.dashboard.png" alt="Category-first navigation with 9 tabs required upfront decisions">
+            </div>
+            <figcaption class="caption-muted">Category-first navigation with 9 tabs required upfront decisions</figcaption>
+          </figure>
+          <figure class="visual-item">
+            <div class="img-wrapper" role="button" tabindex="0" data-src="old.studio.png" data-alt="Template selection forced users into predefined content types">
+              <img src="old.studio.png" alt="Template selection forced users into predefined content types">
+            </div>
+            <figcaption class="caption-muted">Template selection forced users into predefined content types</figcaption>
+          </figure>
+          <figure class="visual-item">
+            <div class="img-wrapper" role="button" tabindex="0" data-src="old.canvas.png" data-alt="Separate pages for brief, edit, and publish created context-switching">
+              <img src="old.canvas.png" alt="Separate pages for brief, edit, and publish created context-switching">
+            </div>
+            <figcaption class="caption-muted">Separate pages for brief, edit, and publish created context-switching</figcaption>
+          </figure>
+          <figure class="visual-item">
+            <div class="img-wrapper" role="button" tabindex="0" data-src="old.chat.png" data-alt="Basic chat interface without expert personas or advanced features">
+              <img src="old.chat.png" alt="Basic chat interface without expert personas or advanced features">
+            </div>
+            <figcaption class="caption-muted">Basic chat interface without expert personas or advanced features</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -512,30 +566,31 @@
     <section class="case-section">
       <div class="container">
         <h2>The Solution</h2>
+        <p class="grid-label after-label">After: The Redesigned Experience</p>
         <div class="visual-grid">
           <figure class="visual-item">
-            <div class="img-wrapper" role="button" tabindex="0" data-src="old.dashboard.png" data-alt="Before: Category Overload">
-              <img src="old.dashboard.png" alt="Before: Category Overload - the original MorningAI interface with 9 nested category tabs">
+            <div class="img-wrapper" role="button" tabindex="0" data-src="new.dashboard1.png" data-alt="Command bar and For You surface replace category navigation">
+              <img src="new.dashboard1.png" alt="Command bar and For You surface replace category navigation">
             </div>
-            <figcaption class="caption">Before: Category Overload</figcaption>
+            <figcaption class="caption-muted">Command bar and 'For You' surface replace category navigation</figcaption>
           </figure>
           <figure class="visual-item">
-            <div class="img-wrapper" role="button" tabindex="0" data-src="new.dashboard1.png" data-alt="After: Command Bar and For You Dashboard">
-              <img src="new.dashboard1.png" alt="After: Command Bar and For You Dashboard">
+            <div class="img-wrapper" role="button" tabindex="0" data-src="new.studio.png" data-alt="Natural language search and simplified template browsing">
+              <img src="new.studio.png" alt="Natural language search and simplified template browsing">
             </div>
-            <figcaption class="caption">After: Command Bar + 'For You' Dashboard</figcaption>
+            <figcaption class="caption-muted">Natural language search and simplified template browsing</figcaption>
           </figure>
           <figure class="visual-item">
-            <div class="img-wrapper" role="button" tabindex="0" data-src="new.canvas.png" data-alt="Content Creation Canvas">
-              <img src="new.canvas.png" alt="Content Creation Canvas">
+            <div class="img-wrapper" role="button" tabindex="0" data-src="new.canvas.png" data-alt="Unified canvas consolidates brief, edit, and publish workflows">
+              <img src="new.canvas.png" alt="Unified canvas consolidates brief, edit, and publish workflows">
             </div>
-            <figcaption class="caption">Content Creation Canvas</figcaption>
+            <figcaption class="caption-muted">Unified canvas consolidates brief, edit, and publish workflows</figcaption>
           </figure>
           <figure class="visual-item">
-            <div class="img-wrapper" role="button" tabindex="0" data-src="new.expanded.chat.png" data-alt="Enhanced Chat with Expert Switching">
-              <img src="new.expanded.chat.png" alt="Enhanced Chat with Expert Switching">
+            <div class="img-wrapper" role="button" tabindex="0" data-src="new.expanded.chat.png" data-alt="Expert AI personas and slash commands for specialized assistance">
+              <img src="new.expanded.chat.png" alt="Expert AI personas and slash commands for specialized assistance">
             </div>
-            <figcaption class="caption">Enhanced Chat with Expert Switching</figcaption>
+            <figcaption class="caption-muted">Expert AI personas and slash commands for specialized assistance</figcaption>
           </figure>
         </div>
 
