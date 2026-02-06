@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MorningAI Case Study | Erin Sublette</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --terracotta: #C67B5C;
+      --sage: #8B9B88;
+      --dusty-rose: #B8A9A1;
+      --charcoal: #3A3A3A;
+      --cream: #F5F3F0;
+      --white: #ffffff;
+      --text: #3A3A3A;
+      --text-muted: #6B6560;
+      --border: #E8E4E0;
+      --shadow: 0 1px 4px rgba(58, 58, 58, 0.06);
+      --shadow-hover: 0 8px 24px rgba(58, 58, 58, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero */
+    .case-hero {
+      padding: 4rem 0 3rem;
+      text-align: left;
+    }
+
+    .case-hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--charcoal);
+      margin: 0 0 1rem;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .case-hero .subheading {
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      color: var(--text);
+      max-width: 720px;
+      margin: 0 0 1.5rem;
+      line-height: 1.7;
+    }
+
+    .case-hero .meta {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .case-hero .meta p {
+      margin: 0 0 0.25rem;
+    }
+
+    /* Sections */
+    .case-section {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .case-section:first-of-type {
+      border-top: none;
+    }
+
+    .case-section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      color: var(--charcoal);
+      margin: 0 0 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .case-section h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin: 1.5rem 0 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .case-section p {
+      margin: 0 0 1rem;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .case-section ul {
+      margin: 0 0 1rem;
+      padding-left: 1.25rem;
+      color: var(--text);
+    }
+
+    .case-section li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* Principle cards */
+    .principle-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1.25rem 0;
+    }
+
+    @media (min-width: 700px) {
+      .principle-cards {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .principle-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 1.25rem 1.35rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--terracotta);
+    }
+
+    .principle-card:nth-child(2) {
+      border-left-color: var(--sage);
+    }
+
+    .principle-card:nth-child(3) {
+      border-left-color: var(--dusty-rose);
+    }
+
+    .principle-card strong {
+      display: block;
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .principle-card span {
+      font-size: 0.9375rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* Stat callouts */
+    .stat-callouts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    @media (min-width: 600px) {
+      .stat-callouts {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .stat-callout {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .stat-callout .stat {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 700;
+      color: var(--terracotta);
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-callout .stat-desc {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .projected-impact {
+      margin-top: 1.5rem;
+    }
+
+    .projected-impact ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .projected-impact li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .projected-impact li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--sage);
+      font-weight: 600;
+    }
+
+    /* Solution visuals */
+    .visual-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin: 1.5rem 0;
+    }
+
+    @media (min-width: 700px) {
+      .visual-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .visual-item {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .visual-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .visual-item .caption {
+      font-size: 0.8125rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* Takeaways */
+    .takeaways p {
+      margin-bottom: 1.25rem;
+    }
+
+    .takeaways p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Back button */
+    .back-section {
+      padding: 3rem 0 4rem;
+      text-align: left;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .back-btn:hover {
+      background: var(--terracotta);
+      color: var(--white);
+      border-color: var(--terracotta);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 1.25rem;
+      }
+
+      .case-hero {
+        padding: 2.5rem 0 2rem;
+      }
+
+      .case-section {
+        padding: 1.75rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="case-hero">
+      <div class="container">
+        <h1>MorningAI: Reimagining the Content Creation Experience</h1>
+        <p class="subheading">Redesigning an AI-powered marketing platform to reduce decision paralysis and accelerate content creation for small marketing teams.</p>
+        <div class="meta">
+          <p><strong>Role:</strong> Lead UX Designer — Research, Strategy, Interaction Design, Prototyping</p>
+          <p><strong>Timeline:</strong> January 2026</p>
+          <p><strong>Deliverables:</strong> Competitive analysis, workflow redesign, design specifications, interactive prototypes</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container">
+        <h2>The Challenge</h2>
+        <p>MorningAI is an autonomous growth platform that helps small marketing teams compete with larger brands by using AI to generate campaigns, social posts, emails, and more.</p>
+        <p>The problem: The existing content creation flow required users to navigate through 9 nested category tabs (Image & Video, Social Media, Ads, Sales Enablers, Blog, Email, Public Relations, Strategy, Blank) before they could create anything. Users faced decision paralysis at the first screen, abandoning briefs before generating content.</p>
+        <p>The core question: <em>How might we transform a complex, wizard-based creation flow into an intuitive experience that gets marketers from idea to published content faster?</em></p>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container">
+        <h2>My Approach</h2>
+
+        <h3>Research & Discovery</h3>
+        <p><strong>Competitive Analysis:</strong> I evaluated leading AI content tools (Copy.ai, Jasper, Writesonic, and others) to map common patterns in creation flows, command interfaces, and dashboard layouts. Key insight: tools that prioritized natural language input over category selection saw higher completion rates and faster time-to-first-output.</p>
+        <p><strong>Stakeholder Input:</strong> Interviews with product leadership, sales, and customer success revealed recurring themes—users loved the AI output quality but found the upfront workflow intimidating. Support tickets frequently cited "too many choices" and "not sure where to start."</p>
+
+        <h3>Strategic Framework</h3>
+        <div class="principle-cards">
+          <div class="principle-card">
+            <strong>Chat Creates, Canvas Edits</strong>
+            <span>Replace the 9-category wizard with a natural language command bar</span>
+          </div>
+          <div class="principle-card">
+            <strong>One Canvas, Not Three Pages</strong>
+            <span>Consolidate the Brief → Edit → Share flow</span>
+          </div>
+          <div class="principle-card">
+            <strong>Progressive Disclosure</strong>
+            <span>Start simple, reveal complexity only as needed</span>
+          </div>
+        </div>
+
+        <h3>Design Solutions</h3>
+        <p><strong>Dashboard Redesign</strong></p>
+        <ul>
+          <li>“For You” personalized surface replacing category-first navigation</li>
+          <li>Quick-action prompts based on recent activity and campaigns</li>
+          <li>Reduced cognitive load by surfacing next steps instead of all options</li>
+        </ul>
+        <p><strong>Content Creation Canvas</strong></p>
+        <ul>
+          <li>Single workspace for brief input, generation, editing, and sharing</li>
+          <li>Inline editing with AI-assisted refinements</li>
+          <li>Contextual export options (e.g., schedule, copy, download)</li>
+        </ul>
+        <p><strong>Enhanced Chat Interface</strong></p>
+        <ul>
+          <li>Command bar with suggested prompts and templates</li>
+          <li>Expert AI personas for specialized assistance (e.g., social, email, ads)</li>
+          <li>Streamlined conversation history for iterative refinement</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container">
+        <h2>Key Results</h2>
+        <div class="stat-callouts">
+          <div class="stat-callout">
+            <div class="stat">9 → 1</div>
+            <div class="stat-desc">Category tabs reduced to command bar</div>
+          </div>
+          <div class="stat-callout">
+            <div class="stat">3 → 1</div>
+            <div class="stat-desc">Pages in creation flow (Brief/Edit/Share → single canvas)</div>
+          </div>
+          <div class="stat-callout">
+            <div class="stat">7</div>
+            <div class="stat-desc">Expert AI personas for specialized assistance</div>
+          </div>
+        </div>
+        <div class="projected-impact">
+          <p><strong>Projected Impact</strong></p>
+          <ul>
+            <li>Reduced time from idea to first generated content</li>
+            <li>Lower abandonment of in-progress briefs</li>
+            <li>Increased adoption of advanced features through progressive disclosure</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container">
+        <h2>The Solution</h2>
+        <div class="visual-grid">
+          <figure class="visual-item">
+            <img src="old_dashboard.png" alt="Before: Category Overload - the original MorningAI interface with 9 nested category tabs">
+            <figcaption class="caption">Before: Category Overload</figcaption>
+          </figure>
+          <figure class="visual-item">
+            <img src="new_dashboard1.png" alt="After: Command Bar and For You Dashboard">
+            <figcaption class="caption">After: Command Bar + 'For You' Dashboard</figcaption>
+          </figure>
+          <figure class="visual-item">
+            <img src="new_canvas.png" alt="Content Creation Canvas">
+            <figcaption class="caption">Content Creation Canvas</figcaption>
+          </figure>
+          <figure class="visual-item">
+            <img src="new_expanded_chat.png" alt="Enhanced Chat with Expert Switching">
+            <figcaption class="caption">Enhanced Chat with Expert Switching</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container">
+        <h2>What I Learned</h2>
+        <div class="takeaways">
+          <p><strong>Reduce before you add.</strong> The most impactful changes came from removing friction—collapsing nine categories into a command bar, merging three pages into one—rather than layering on new features. Sometimes the best design is subtraction.</p>
+          <p><strong>Natural language is the new navigation.</strong> Users increasingly expect to describe what they want rather than hunt through menus. Tools that embrace conversational input can skip the taxonomy problem entirely.</p>
+          <p><strong>Progressive disclosure builds confidence.</strong> Starting with simple prompts and revealing advanced options as users gain familiarity helped reduce overwhelm while preserving power-user workflows.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="back-section">
+      <div class="container">
+        <a href="../index.html" class="back-btn">← Back to Portfolio</a>
+      </div>
+    </section>
+  </main>
+
+  <footer style="text-align: center; padding: 2rem 1rem; font-size: 0.875rem; color: var(--text-muted); background: var(--cream);">
+    <div class="container">© 2026 Erin Sublette</div>
+  </footer>
+</body>
+</html>
