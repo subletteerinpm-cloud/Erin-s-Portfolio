@@ -248,13 +248,47 @@
       gap: 0.75rem;
     }
 
-    .visual-item img {
-      width: 100%;
-      height: auto;
-      display: block;
+    .visual-item .img-wrapper {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
       border-radius: 10px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
+      cursor: pointer;
+      background: var(--white);
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .visual-item .img-wrapper:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .visual-item .img-wrapper::after {
+      content: 'Click to enlarge';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.5rem;
+      background: linear-gradient(transparent, rgba(58, 58, 58, 0.7));
+      color: var(--white);
+      font-size: 0.75rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .visual-item .img-wrapper:hover::after {
+      opacity: 1;
+    }
+
+    .visual-item .img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
     }
 
     .visual-item .caption {
@@ -262,6 +296,66 @@
       color: var(--text);
       font-weight: 500;
       line-height: 1.4;
+    }
+
+    /* Image overlay modal */
+    .image-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(58, 58, 58, 0.9);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      cursor: pointer;
+    }
+
+    .image-overlay.is-open {
+      display: flex;
+    }
+
+    .image-overlay .overlay-content {
+      position: relative;
+      max-width: 95vw;
+      max-height: 95vh;
+      cursor: default;
+    }
+
+    .image-overlay .overlay-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      display: block;
+    }
+
+    .image-overlay .close-btn {
+      position: absolute;
+      top: -2.5rem;
+      right: 0;
+      width: 2rem;
+      height: 2rem;
+      border: none;
+      background: var(--white);
+      color: var(--charcoal);
+      border-radius: 50%;
+      font-size: 1.25rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      padding: 0;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .image-overlay .close-btn:hover {
+      background: var(--terracotta);
+      color: var(--white);
     }
 
     /* Takeaways */
@@ -420,21 +514,36 @@
         <h2>The Solution</h2>
         <div class="visual-grid">
           <figure class="visual-item">
-            <img src="old_dashboard.png" alt="Before: Category Overload - the original MorningAI interface with 9 nested category tabs">
+            <div class="img-wrapper" role="button" tabindex="0" data-src="old.dashboard.png" data-alt="Before: Category Overload">
+              <img src="old.dashboard.png" alt="Before: Category Overload - the original MorningAI interface with 9 nested category tabs">
+            </div>
             <figcaption class="caption">Before: Category Overload</figcaption>
           </figure>
           <figure class="visual-item">
-            <img src="new_dashboard1.png" alt="After: Command Bar and For You Dashboard">
+            <div class="img-wrapper" role="button" tabindex="0" data-src="new.dashboard1.png" data-alt="After: Command Bar and For You Dashboard">
+              <img src="new.dashboard1.png" alt="After: Command Bar and For You Dashboard">
+            </div>
             <figcaption class="caption">After: Command Bar + 'For You' Dashboard</figcaption>
           </figure>
           <figure class="visual-item">
-            <img src="new_canvas.png" alt="Content Creation Canvas">
+            <div class="img-wrapper" role="button" tabindex="0" data-src="new.canvas.png" data-alt="Content Creation Canvas">
+              <img src="new.canvas.png" alt="Content Creation Canvas">
+            </div>
             <figcaption class="caption">Content Creation Canvas</figcaption>
           </figure>
           <figure class="visual-item">
-            <img src="new_expanded_chat.png" alt="Enhanced Chat with Expert Switching">
+            <div class="img-wrapper" role="button" tabindex="0" data-src="new.expanded.chat.png" data-alt="Enhanced Chat with Expert Switching">
+              <img src="new.expanded.chat.png" alt="Enhanced Chat with Expert Switching">
+            </div>
             <figcaption class="caption">Enhanced Chat with Expert Switching</figcaption>
           </figure>
+        </div>
+
+        <div class="image-overlay" id="imageOverlay" role="dialog" aria-modal="true" aria-label="Enlarged image">
+          <div class="overlay-content" id="overlayContent">
+            <button type="button" class="close-btn" id="closeOverlay" aria-label="Close">×</button>
+            <img id="overlayImage" src="" alt="">
+          </div>
         </div>
       </div>
     </section>
@@ -460,5 +569,59 @@
   <footer style="text-align: center; padding: 2rem 1rem; font-size: 0.875rem; color: var(--text-muted); background: var(--cream);">
     <div class="container">© 2026 Erin Sublette</div>
   </footer>
+
+  <script>
+    (function() {
+      var overlay = document.getElementById('imageOverlay');
+      var overlayImage = document.getElementById('overlayImage');
+      var overlayContent = document.getElementById('overlayContent');
+      var closeBtn = document.getElementById('closeOverlay');
+      var wrappers = document.querySelectorAll('.img-wrapper');
+
+      function openOverlay(src, alt) {
+        overlayImage.src = src;
+        overlayImage.alt = alt || '';
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeOverlay() {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      wrappers.forEach(function(wrapper) {
+        wrapper.addEventListener('click', function(e) {
+          e.stopPropagation();
+          openOverlay(wrapper.dataset.src, wrapper.dataset.alt);
+        });
+        wrapper.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openOverlay(wrapper.dataset.src, wrapper.dataset.alt);
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        closeOverlay();
+      });
+
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closeOverlay();
+      });
+
+      overlayContent.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
+          closeOverlay();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
